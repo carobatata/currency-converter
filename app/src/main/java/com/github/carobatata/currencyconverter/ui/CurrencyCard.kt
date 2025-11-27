@@ -14,7 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.github.carobatata.currencyconverter.ui.theme.currency_card_padding
+import com.github.carobatata.currencyconverter.ui.theme.currency_text_padding_start
 
 @Composable
 fun CurrencyCard() {
@@ -22,7 +23,7 @@ fun CurrencyCard() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(currency_card_padding),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -34,7 +35,7 @@ fun CurrencyCard() {
                     contentDescription = null,
                 )
                 Column(
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = currency_text_padding_start)
                 ) {
                     Text("USD")
                     Text("United Stated Dollars")
