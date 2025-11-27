@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.carobatata.currencyconverter.ui.CurrencyConverterScreen
 import com.github.carobatata.currencyconverter.ui.theme.CurrencyConverterTheme
-import com.github.carobatata.currencyconverter.ui.theme.app_padding
+import com.github.carobatata.currencyconverter.ui.theme.regular_padding
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier
                             .padding(innerPadding)
-                            .padding(app_padding)
+                            .padding(regular_padding)
                     ) {
                         CurrencyConverterScreen()
                     }
