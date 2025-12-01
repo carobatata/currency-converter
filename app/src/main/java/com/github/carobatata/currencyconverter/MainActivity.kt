@@ -1,6 +1,5 @@
 package com.github.carobatata.currencyconverter
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,17 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.github.carobatata.currencyconverter.ui.CurrencyConverterScreen
+import com.github.carobatata.currencyconverter.ui.ScreenChangeCurrency
+import com.github.carobatata.currencyconverter.ui.ScreenCurrencyConverter
+import com.github.carobatata.currencyconverter.ui.ScreenExampleDataClass
 import com.github.carobatata.currencyconverter.ui.theme.CurrencyConverterTheme
 import com.github.carobatata.currencyconverter.ui.theme.app_blue
 import com.github.carobatata.currencyconverter.ui.theme.app_light_blue
-import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,15 +81,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Serializable
-object ScreenCurrencyConverter
-
-@Serializable
-data class ScreenExampleDataClass(
-    val name: String?,
-    val age: Int
-)
-
-@Serializable
-object ScreenChangeCurrency
