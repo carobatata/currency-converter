@@ -1,5 +1,6 @@
 package com.github.carobatata.currencyconverter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,12 +15,18 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.github.carobatata.currencyconverter.ui.CurrencyConverterScreen
 import com.github.carobatata.currencyconverter.ui.theme.CurrencyConverterTheme
 import com.github.carobatata.currencyconverter.ui.theme.app_blue
 import com.github.carobatata.currencyconverter.ui.theme.app_light_blue
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +50,46 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                 ) { innerPadding ->
-                    CurrencyConverterScreen(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                    )
-
+                    val navController = rememberNavController() //to navigate from screen to screen
+                    NavHost(
+                        navController = navController,
+                        startDestination = ScreenCurrencyConverter,
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
+                        composable<ScreenCurrencyConverter> {
+                            CurrencyConverterScreen {
+                                navController.navigate(
+                                    ScreenExampleDataClass(
+                                        "William",
+                                        22
+                                    )
+                                )
+                            }
+                        }
+                        composable<ScreenChangeCurrency> {
+                            Text("Hola")
+                        }
+                        composable<ScreenExampleDataClass> {
+                            val args = it.toRoute<ScreenExampleDataClass>()
+                            Text(
+                                "${args.name} and ${args.age} years old"
+                            )
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+@Serializable
+object ScreenCurrencyConverter
+
+@Serializable
+data class ScreenExampleDataClass(
+    val name: String?,
+    val age: Int
+)
+
+@Serializable
+object ScreenChangeCurrency

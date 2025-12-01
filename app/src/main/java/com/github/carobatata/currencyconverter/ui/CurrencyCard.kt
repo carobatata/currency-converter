@@ -1,5 +1,6 @@
 package com.github.carobatata.currencyconverter.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,12 +19,15 @@ import com.github.carobatata.currencyconverter.ui.theme.currency_card_padding
 import com.github.carobatata.currencyconverter.ui.theme.currency_text_padding_start
 
 @Composable
-fun CurrencyCard() {
+fun CurrencyCard(onClick: () -> Unit) {
     OutlinedCard {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(currency_card_padding),
+                .padding(currency_card_padding)
+                .clickable(
+                    onClick = onClick
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {

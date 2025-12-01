@@ -11,20 +11,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.carobatata.currencyconverter.ui.theme.app_blue
 import com.github.carobatata.currencyconverter.ui.theme.regular_padding
 
-@Preview
 @Composable
-fun CurrencyConverterScreen(modifier: Modifier = Modifier) {
+fun CurrencyConverterScreen(onClick: () -> Unit) {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .padding(regular_padding)
             .fillMaxSize()
     ) {
-        CurrencyCard()
+        CurrencyCard(onClick)
         HorizontalDivider(
             modifier = Modifier.padding(regular_padding),
             color = Color.Transparent,
@@ -44,7 +42,7 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(regular_padding),
             color = Color.Transparent,
         )
-        CurrencyCard()
+        CurrencyCard(onClick)
         HorizontalDivider(
             modifier = Modifier.padding(regular_padding),
             color = Color.Transparent,
