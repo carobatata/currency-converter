@@ -15,6 +15,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,8 +40,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             CurrencyConverterTheme {
                 val navController = rememberNavController()
-                val navBackStackEntry = navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry.value?.destination
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentDestination = navBackStackEntry?.destination
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
