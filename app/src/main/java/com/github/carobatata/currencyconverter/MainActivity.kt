@@ -32,7 +32,9 @@ import com.github.carobatata.currencyconverter.ui.ScreenExampleDataClass
 import com.github.carobatata.currencyconverter.ui.theme.CurrencyConverterTheme
 import com.github.carobatata.currencyconverter.ui.theme.app_blue
 import com.github.carobatata.currencyconverter.ui.theme.app_light_blue
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
