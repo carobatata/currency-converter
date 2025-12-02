@@ -1,4 +1,4 @@
-package com.github.carobatata.currencyconverter.ui
+package com.github.carobatata.currencyconverter.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.github.carobatata.currencyconverter.ui.theme.currency_card_padding
 import com.github.carobatata.currencyconverter.ui.theme.currency_text_padding_start
 
@@ -42,7 +43,7 @@ fun CurrencyCard(onClick: () -> Unit) {
                     modifier = Modifier.padding(start = currency_text_padding_start)
                 ) {
                     Text("USD")
-                    Text("United Stated Dollars")
+                    Text("United States Dollars", color = Color.Gray)
                 }
             }
             Icon(

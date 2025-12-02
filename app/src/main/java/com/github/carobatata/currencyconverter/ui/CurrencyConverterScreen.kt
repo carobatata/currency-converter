@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.github.carobatata.currencyconverter.ui.component.AmountField
+import com.github.carobatata.currencyconverter.ui.component.CurrencyCard
 import com.github.carobatata.currencyconverter.ui.theme.app_blue
 import com.github.carobatata.currencyconverter.ui.theme.regular_padding
 

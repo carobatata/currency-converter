@@ -6,10 +6,11 @@ import kotlinx.serialization.Serializable
 object ScreenCurrencyConverter
 
 @Serializable
+object ScreenChangeCurrency
+
+@Serializable
 data class ScreenExampleDataClass(
     val name: String?,
     val age: Int
 )
 
-@Serializable
-object ScreenChangeCurrency

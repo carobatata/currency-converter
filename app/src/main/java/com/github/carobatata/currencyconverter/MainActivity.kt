@@ -24,6 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.github.carobatata.currencyconverter.ui.ChangeCurrencyScreen
 import com.github.carobatata.currencyconverter.ui.CurrencyConverterScreen
 import com.github.carobatata.currencyconverter.ui.ScreenChangeCurrency
 import com.github.carobatata.currencyconverter.ui.ScreenCurrencyConverter
@@ -48,7 +49,8 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         CenterAlignedTopAppBar(
                             navigationIcon = {
-                                val showBackIcon = currentDestination?.route != ScreenCurrencyConverter::class.qualifiedName
+                                val showBackIcon =
+                                    currentDestination?.route != ScreenCurrencyConverter::class.qualifiedName
 
                                 if (showBackIcon) {
                                     IconButton(onClick = { navController.popBackStack() }) {
@@ -80,16 +82,11 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable<ScreenCurrencyConverter> {
                             CurrencyConverterScreen {
-                                navController.navigate(
-                                    ScreenExampleDataClass(
-                                        "William",
-                                        22
-                                    )
-                                )
+                                navController.navigate(ScreenChangeCurrency)
                             }
                         }
                         composable<ScreenChangeCurrency> {
-                            Text("Hola")
+                            ChangeCurrencyScreen()
                         }
                         composable<ScreenExampleDataClass> {
                             val args = it.toRoute<ScreenExampleDataClass>()

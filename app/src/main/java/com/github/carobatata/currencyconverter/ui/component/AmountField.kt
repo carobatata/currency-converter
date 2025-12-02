@@ -1,4 +1,4 @@
-package com.github.carobatata.currencyconverter.ui
+package com.github.carobatata.currencyconverter.ui.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
