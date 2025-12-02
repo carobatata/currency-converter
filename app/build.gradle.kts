@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt.android.gradle)
+    kotlin("kapt")
 }
 
 android {
@@ -41,11 +42,6 @@ android {
     buildFeatures {
         compose = true
     }
-    packaging {
-        resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
-    }
 }
 
 dependencies {
@@ -61,7 +57,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.dagger.hilt.android)
-    implementation(libs.dagger.hilt.compiler)
+    kapt(libs.dagger.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
