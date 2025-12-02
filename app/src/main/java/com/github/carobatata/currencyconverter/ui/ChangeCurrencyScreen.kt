@@ -1,5 +1,7 @@
 package com.github.carobatata.currencyconverter.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.carobatata.currencyconverter.ui.component.CurrencyRow
+import com.github.carobatata.currencyconverter.ui.theme.light_grey
 import com.github.carobatata.currencyconverter.ui.theme.regular_padding
 import com.github.carobatata.currencyconverter.ui.theme.rounded_corner
 
@@ -30,19 +33,25 @@ fun ChangeCurrencyScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(regular_padding)
     ) {
-        OutlinedTextField(
-            value = query,
-            onValueChange = { query = it },
-            leadingIcon = {
-                Icon(Icons.Default.Search, contentDescription = null)
-            },
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(regular_padding),
-            shape = RoundedCornerShape(rounded_corner),
-        )
+                .background(light_grey)
+                .padding(vertical = regular_padding)
+        ){
+            OutlinedTextField(
+                value = query,
+                onValueChange = { query = it },
+                leadingIcon = {
+                    Icon(Icons.Default.Search, contentDescription = null)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(regular_padding),
+                shape = RoundedCornerShape(rounded_corner),
+            )
+        }
 
         LazyColumn {
             items(3){
