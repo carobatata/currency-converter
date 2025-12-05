@@ -2,7 +2,6 @@ package com.github.carobatata.currencyconverter.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.carobatata.currencyconverter.data.model.Rates
 import com.github.carobatata.currencyconverter.domain.CurrencyConverterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.round
-import kotlin.reflect.full.memberProperties
 
 @HiltViewModel
 class CurrencyConverterViewModel @Inject constructor(
@@ -98,10 +96,7 @@ class CurrencyConverterViewModel @Inject constructor(
 //        }
 //    }
 
-    fun getRateForCurrency(currency: String, rates: Rates): Double? {
-        val ratesMap = Rates::class.memberProperties
-            .associateBy({ it.name.uppercase() }, { it.get(rates) as Double })
-
-        return ratesMap[currency.uppercase()]
+    fun getRateForCurrency(currency: String, rates: Map<String, Double?>): Double? {
+        return rates[currency.uppercase()]
     }
 }

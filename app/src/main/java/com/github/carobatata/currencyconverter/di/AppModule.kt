@@ -11,8 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-
-private const val BASE_URL = "https://api.exchangeratesapi.io/"
+private const val BASE_URL = "https://v6.exchangerate-api.com/v6/d3d59a7eb9e2a3e0fd61c36d/"
 
 @Module
 @InstallIn(SingletonComponent::class)

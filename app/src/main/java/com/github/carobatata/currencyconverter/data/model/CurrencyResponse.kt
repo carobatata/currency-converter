@@ -1,21 +1,34 @@
 package com.github.carobatata.currencyconverter.data.model
+
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CurrencyResponse(
-    @field:Json(name = "base")
-    val base: String,
+    @Json(name = "result")
+    val result: String,
 
-    @field:Json(name = "date")
-    val date: String,
+    @Json(name = "documentation")
+    val documentation: String,
 
-    @field:Json(name = "rates")
-    val rates: Rates,
+    @Json(name = "terms_of_use")
+    val termsOfUse: String,
 
-    @field:Json(name = "success")
-    val success: Boolean,
+    @Json(name = "time_last_update_unix")
+    val timeLastUpdateUnix: Int?,
 
-    @field:Json(name = "timestamp")
-    val timestamp: Int
+    @Json(name = "time_last_update_utc")
+    val timeLastUpdateUtc: String,
+
+    @Json(name = "time_next_update_unix")
+    val timeNextUpdateUnix: Int,
+
+    @Json(name = "time_next_update_utc")
+    val timeNextUpdateUtc: String,
+
+    @Json(name = "base_code")
+    val baseCode: String,
+
+    @Json(name = "conversion_rates")
+    val rates: Map<String, Double>
 )
