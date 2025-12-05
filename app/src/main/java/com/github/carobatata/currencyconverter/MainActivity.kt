@@ -1,5 +1,6 @@
 package com.github.carobatata.currencyconverter
 
+import android.R.attr.onClick
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -83,9 +84,9 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         composable<ScreenCurrencyConverter> {
-                            CurrencyConverterScreen {
-                                navController.navigate(ScreenChangeCurrency)
-                            }
+                            CurrencyConverterScreen(
+                                onClick = { navController.navigate(ScreenChangeCurrency) }
+                            )
                         }
                         composable<ScreenChangeCurrency> {
                             ChangeCurrencyScreen()

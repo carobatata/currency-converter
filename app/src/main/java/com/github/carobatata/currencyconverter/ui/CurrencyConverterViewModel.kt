@@ -17,41 +17,86 @@ class CurrencyConverterViewModel @Inject constructor(
     private val currencyConverterRepository: CurrencyConverterRepository
 ) : ViewModel() {
 
-    private val _conversionUiState =
-        MutableStateFlow<CurrencyConverterUiState>(CurrencyConverterUiState.Empty)
-    val conversionUiState: StateFlow<CurrencyConverterUiState> = _conversionUiState
+    private val _fromCurrency = MutableStateFlow("USD")
+    val fromCurrency: StateFlow<String> = _fromCurrency
 
-    fun convert(
-        amountString: String,
-        fromCurrency: String,
-        toCurrency: String,
-    ) {
-        val fromAmount = amountString.toFloatOrNull()
-        if (fromAmount == null) {
-            _conversionUiState.value = CurrencyConverterUiState.Error
-            return
-        }
+    private val _toCurrency = MutableStateFlow("EUR")
+    val toCurrency: StateFlow<String> = _toCurrency
 
+    private val _amount = MutableStateFlow(0.0)
+    val amount: StateFlow<Double> = _amount
+
+    private val _convertedAmount = MutableStateFlow<Double?>(null)
+    val convertedAmount: StateFlow<Double?> = _convertedAmount
+
+//    private val _conversionUiState =
+//        MutableStateFlow<CurrencyConverterUiState>(CurrencyConverterUiState.Empty)
+//    val conversionUiState: StateFlow<CurrencyConverterUiState> = _conversionUiState
+
+    fun setFromCurrency(currency: String) {
+        _fromCurrency.value = currency
+        convertAmount()
+    }
+
+    fun setToCurrency(currency: String) {
+        _toCurrency.value = currency
+        convertAmount()
+    }
+
+    fun setAmount(value: Double) {
+        _amount.value = value
+        convertAmount()
+    }
+
+    private fun convertAmount() {
         viewModelScope.launch {
-            _conversionUiState.value = CurrencyConverterUiState.Loading
-
-            currencyConverterRepository.getRates(fromCurrency).fold(
+            currencyConverterRepository.getRates(_fromCurrency.value).fold(
                 onSuccess = { ratesResponse ->
-                    val rate = getRateForCurrency(toCurrency, ratesResponse.rates)
-                    if (rate == null) {
-                        _conversionUiState.value = CurrencyConverterUiState.Error
+                    val rate = getRateForCurrency(_toCurrency.value, ratesResponse.rates)
+                    _convertedAmount.value = if (rate != null) {
+                        round(_amount.value * rate * 100) / 100
                     } else {
-                        val convertedCurrency = round(fromAmount * rate * 100) / 100
-                        _conversionUiState.value =
-                            CurrencyConverterUiState.Success("$fromAmount $fromCurrency = $convertedCurrency $toCurrency")
+                        0.0
                     }
                 },
                 onFailure = {
-                    _conversionUiState.value = CurrencyConverterUiState.Error
+                    _convertedAmount.value = 0.0
                 }
             )
         }
     }
+
+//    fun convert(
+//        amountString: String,
+//        fromCurrency: String,
+//        toCurrency: String,
+//    ) {
+//        val fromAmount = amountString.toFloatOrNull()
+//        if (fromAmount == null) {
+//            _conversionUiState.value = CurrencyConverterUiState.Error
+//            return
+//        }
+//
+//        viewModelScope.launch {
+//            _conversionUiState.value = CurrencyConverterUiState.Loading
+//
+//            currencyConverterRepository.getRates(fromCurrency).fold(
+//                onSuccess = { ratesResponse ->
+//                    val rate = getRateForCurrency(toCurrency, ratesResponse.rates)
+//                    if (rate == null) {
+//                        _conversionUiState.value = CurrencyConverterUiState.Error
+//                    } else {
+//                        val convertedCurrency = round(fromAmount * rate * 100) / 100
+//                        _conversionUiState.value =
+//                            CurrencyConverterUiState.Success("$fromAmount $fromCurrency = $convertedCurrency $toCurrency")
+//                    }
+//                },
+//                onFailure = {
+//                    _conversionUiState.value = CurrencyConverterUiState.Error
+//                }
+//            )
+//        }
+//    }
 
     fun getRateForCurrency(currency: String, rates: Rates): Double? {
         val ratesMap = Rates::class.memberProperties

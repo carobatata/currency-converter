@@ -20,7 +20,7 @@ import com.github.carobatata.currencyconverter.ui.theme.currency_card_padding
 import com.github.carobatata.currencyconverter.ui.theme.currency_text_padding_start
 
 @Composable
-fun CurrencyCard(onClick: () -> Unit) {
+fun CurrencyCard(onClick: () -> Unit, currency: String) {
     OutlinedCard {
         Row(
             modifier = Modifier
@@ -42,7 +42,7 @@ fun CurrencyCard(onClick: () -> Unit) {
                 Column(
                     modifier = Modifier.padding(start = currency_text_padding_start)
                 ) {
-                    Text("USD")
+                    Text(currency)
                     Text("United States Dollars", color = Color.Gray)
                 }
             }

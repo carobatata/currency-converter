@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.retrofit)
     implementation(libs.okhttp)

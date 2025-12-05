@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 
 @Composable
-fun AmountField() {
+fun AmountField(setAmountToConvert: (Double) -> Unit) {
     var amount by rememberSaveable { mutableStateOf("120") }
     TextField(
         modifier = Modifier.fillMaxWidth(),
